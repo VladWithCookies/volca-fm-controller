@@ -4,3 +4,7 @@
   background-color: var(--color-gray-900);
   color: var(--color-white);
 }
+
+.toggle-root[data-state="on"] {
+	background-color: var(--color-teal-300);
+}
