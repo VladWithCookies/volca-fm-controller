@@ -1,29 +1,31 @@
 import Section from '@/components/atoms/Section';
+import OrderedList from '@/components/atoms/OrderedList';
+import ListItem from '@/components/atoms/ListItem';
 import Stepper from '@/components/molecules/Stepper';
 
 export default function OperatorRatesSection() {
   return (
     <Section heading="Operator Rates">
-      <ol className="flex size-full">
-        <li className="size-full">
+      <OrderedList>
+        <ListItem>
           <Stepper />
-        </li>
-        <li className="size-full">
+        </ListItem>
+        <ListItem>
           <Stepper />
-        </li>
-        <li className="size-full">
+        </ListItem>
+        <ListItem>
           <Stepper />
-        </li>
-        <li className="size-full">
+        </ListItem>
+        <ListItem>
           <Stepper />
-        </li>
-        <li className="size-full">
+        </ListItem>
+        <ListItem>
           <Stepper />
-        </li>
-        <li className="size-full">
+        </ListItem>
+        <ListItem>
           <Stepper />
-        </li>
-      </ol>
+        </ListItem>
+      </OrderedList>
     </Section>
   );
 }

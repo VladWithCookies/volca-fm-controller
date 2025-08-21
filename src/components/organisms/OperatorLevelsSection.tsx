@@ -1,29 +1,31 @@
 import Section from '@/components/atoms/Section';
-import Fader from '@/components/atoms/Fader';
+import OrderedList from '@/components/atoms/OrderedList';
+import ListItem from '@/components/atoms/ListItem';
+import Fader from '@/components/molecules/Fader';
 
 export default function OperatorLevelsSection() {
   return (
     <Section heading="Operator Levels">
-      <ol className="flex size-full">
-        <li className="size-full">
+      <OrderedList>
+        <ListItem>
           <Fader />
-        </li>
-        <li className="size-full">
+        </ListItem>
+        <ListItem>
           <Fader />
-        </li>
-        <li className="size-full">
+        </ListItem>
+        <ListItem>
           <Fader />
-        </li>
-        <li className="size-full">
+        </ListItem>
+        <ListItem>
           <Fader />
-        </li>
-        <li className="size-full">
+        </ListItem>
+        <ListItem>
           <Fader />
-        </li>
-        <li className="size-full">
+        </ListItem>
+        <ListItem>
           <Fader />
-        </li>
-      </ol>
+        </ListItem>
+      </OrderedList>
     </Section>
   );
 }

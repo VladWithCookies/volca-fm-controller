@@ -6,7 +6,7 @@ export default function Button({ children }: Props) {
   return (
     <button
       type="button"
-      className="flex items-center justify-center size-full bg-gray-900 text-white"
+      className="flex items-center justify-center size-full bg-gray-700 text-white hover:bg-gray-800 focus:bg-gray-800 transition"
     >
       {children}
     </button>

@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+.tabs-trigger[data-state="active"] {
+  background-color: var(--color-gray-900);
+  color: var(--color-white);
+}
