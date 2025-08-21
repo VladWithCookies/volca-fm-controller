@@ -4,23 +4,23 @@ import Stepper from '@/components/molecules/Stepper';
 export default function OperatorRatesSection() {
   return (
     <Section heading="Operator Rates">
-      <ol className="flex">
-        <li>
+      <ol className="flex size-full">
+        <li className="size-full">
           <Stepper />
         </li>
-        <li>
+        <li className="size-full">
           <Stepper />
         </li>
-        <li>
+        <li className="size-full">
           <Stepper />
         </li>
-        <li>
+        <li className="size-full">
           <Stepper />
         </li>
-        <li>
+        <li className="size-full">
           <Stepper />
         </li>
-        <li>
+        <li className="size-full">
           <Stepper />
         </li>
       </ol>

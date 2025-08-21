@@ -4,15 +4,15 @@ import Button from '@/components/atoms/Button';
 
 export default function Stepper() {
   return (
-    <div className="flex flex-col w-50">
+    <div className="flex flex-col size-full">
       <Button>
-        <TriangleUpIcon className="h-10 w-10" />
+        <TriangleUpIcon className="size-10" />
       </Button>
-      <span className="inline-flex items-center justify-center h-10 text-xl">
+      <span className="inline-flex items-center justify-center size-full text-2xl">
         99
       </span>
       <Button>
-        <TriangleDownIcon className="h-10 w-10" />
+        <TriangleDownIcon className="size-10" />
       </Button>
     </div>
   );

@@ -4,23 +4,23 @@ import Fader from '@/components/atoms/Fader';
 export default function OperatorLevelsSection() {
   return (
     <Section heading="Operator Levels">
-      <ol className="flex">
-        <li>
+      <ol className="flex size-full">
+        <li className="size-full">
           <Fader />
         </li>
-        <li>
+        <li className="size-full">
           <Fader />
         </li>
-        <li>
+        <li className="size-full">
           <Fader />
         </li>
-        <li>
+        <li className="size-full">
           <Fader />
         </li>
-        <li>
+        <li className="size-full">
           <Fader />
         </li>
-        <li>
+        <li className="size-full">
           <Fader />
         </li>
       </ol>
