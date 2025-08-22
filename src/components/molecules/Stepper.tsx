@@ -6,7 +6,7 @@ import Button from '@/components/atoms/Button';
 export default function Stepper() {
   return (
     <div className="flex flex-col size-full">
-      <Button>
+      <Button fluid>
         <TriangleUpIcon className="size-10" />
       </Button>
       <span
@@ -16,7 +16,7 @@ export default function Stepper() {
         )}>
         99
       </span>
-      <Button>
+      <Button fluid>
         <TriangleDownIcon className="size-10" />
       </Button>
     </div>
