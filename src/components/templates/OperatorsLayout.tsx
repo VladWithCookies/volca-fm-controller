@@ -16,13 +16,13 @@ export default function OperatorsLayout({ heading, top, bottom, asideTop, asideM
       <div className="col-span-6 row-span-2">
         {top}
       </div>
-      <div className="col-span-3 row-span-5">
+      <div className="col-span-3 row-span-4">
         {asideTop}
       </div>
       <div className="col-span-6 row-span-7">
         {bottom}
       </div>
-      <div className="col-span-3 row-span-2">
+      <div className="col-span-3 row-span-3">
         {asideMiddle}
       </div>
       <div className="col-span-3 row-span-2">
