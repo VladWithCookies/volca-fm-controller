@@ -3,7 +3,7 @@ import { devtools } from 'zustand/middleware';
 
 const store: StateCreator<State> = (set) => ({
   currentOperatorId: '1',
-  algorithm: 1,
+  algorithmId: '1',
   operators: {
     1: {
       coarse: 0,
@@ -104,7 +104,7 @@ const store: StateCreator<State> = (set) => ({
   },
 
   setCurrentOperatorId: (currentOperatorId: string) => set({ currentOperatorId }),
-  setAlgorithm: (algorithm: number) => set({ algorithm }),
+  setAlgorithmId: (algorithmId: AlgorithmId) => set({ algorithmId }),
   setOperatorParam: (id: string, key: string, value: number) => set((state) => ({
     operators: {
       ...state.operators,

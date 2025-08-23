@@ -5,7 +5,7 @@ interface Props {
   name: string;
   label: string;
   value?: unknown;
-  options?: [unknown, unknown]
+  options?: [unknown, unknown];
   onChange?: (value: unknown) => void;
 }
 
@@ -29,7 +29,8 @@ export default function Switch({
         pressed={pressed}
         onPressedChange={handlePressedChange}
         className={clsx(
-          'toggle-root size-20',
+          'toggle-root',
+          'size-20',
           'bg-gray-200',
           'hover:bg-gray-300 focus:bg-gray-300 transition'
         )}

@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import * as d3 from 'd3';
 import { useRef, useMemo } from 'react';
 
+import { algorithmSelector } from '@/utils/selectors';
 import useStore from '@/hooks/useStore';
-import { ALGORITHM_1 } from '@/constants/algorithms';
 import useResizeObserver from '@/hooks/useResizeObserver';
 import Section from '@/components/atoms/Section';
 import Button from '@/components/atoms/Button';
@@ -21,16 +21,16 @@ interface Props {
 
 const AlgorithmSection = ({ className }: Props) => {
   const svgRef = useRef(null);
+  const algorithm = useStore(algorithmSelector);
   const operators = useStore((state) => state.operators);
   const currentOperatorId = useStore((state) => state.currentOperatorId)
   const setCurrentOperatorId = useStore((state) => state.setCurrentOperatorId);
-
   const [containerRef, width, height] = useResizeObserver();
 
-  const links = ALGORITHM_1.LINKS.map((link) => ({ ...link }));
+  const links = algorithm.links.map((link) => ({ ...link }));
 
   const nodes = useMemo<Node[]>(() => {
-    const nodes = ALGORITHM_1.NODES.map((node) => ({ ...node }));
+    const nodes = algorithm.nodes.map((node) => ({ ...node }));
 
     const simulation = d3.forceSimulation<Node>(nodes)
       .force('collide', d3.forceCollide().radius(100).strength(1))

@@ -1,9 +1,8 @@
-import OperatorLevelsSection from '@/components/organisms/OperatorLevelsSection';
 import OperatorRatiosSection from '@/components/organisms/OperatorRatiosSection';
+import OperatorLevelsSection from '@/components/organisms/OperatorLevelsSection';
 import AlgorithmSection from '@/components/organisms/AlgorithmSection';
-import OperatorTunningSection from '@/components/organisms/OperatorTunningSection';
 import OperatorSwitchesSection from '@/components/organisms/OperatorSwitchesSection';
-
+import OperatorTunningSection from '@/components/organisms/OperatorTunningSection';
 import OperatorsLayout from '@/components/templates/OperatorsLayout';
 
 export default function OperatorsPage() {

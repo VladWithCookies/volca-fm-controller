@@ -7,7 +7,7 @@ interface Props {
   className?: string;
 }
 
-export default function Section ({ ref, heading, children, className }: Props) {
+export default function Section({ heading, children, ref, className }: Props) {
   return (
     <section
       ref={ref}

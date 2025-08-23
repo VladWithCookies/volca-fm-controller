@@ -1,5 +1,5 @@
-import useStore from '@/hooks/useStore';
 import { currentOperatorSelector } from '@/utils/selectors'
+import useStore from '@/hooks/useStore';
 import Section from '@/components/atoms/Section';
 import OrderedList from '@/components/atoms/OrderedList';
 import ListItem from '@/components/atoms/ListItem';

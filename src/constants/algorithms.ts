@@ -1,5 +1,5 @@
-export const ALGORITHM_1 = {
-  NODES: [
+const ALGORITHM_1 = {
+  nodes: [
     { id: 1, carrier: true },
     { id: 2, carrier: false },
     { id: 3, carrier: true },
@@ -7,7 +7,7 @@ export const ALGORITHM_1 = {
     { id: 5, carrier: false },
     { id: 6, carrier: false },
   ],
-  LINKS: [
+  links: [
     { source: 2, target: 1 },
     { source: 1, target: 3 },
     { source: 3, target: 4 },
@@ -15,10 +15,10 @@ export const ALGORITHM_1 = {
     { source: 5, target: 6 },
     { source: 6, target: 6 },
   ],
-};
+} as const;
 
-export const ALGORITHM_2 = {
-  NODES: [
+const ALGORITHM_2 = {
+  nodes: [
     { id: 1, carrier: true },
     { id: 2, carrier: false },
     { id: 3, carrier: true },
@@ -26,7 +26,7 @@ export const ALGORITHM_2 = {
     { id: 5, carrier: false },
     { id: 6, carrier: false },
   ],
-  LINKS: [
+  links: [
     { source: 1, target: 3 },
     { source: 2, target: 1 },
     { source: 2, target: 2 },
@@ -34,10 +34,10 @@ export const ALGORITHM_2 = {
     { source: 4, target: 5 },
     { source: 5, target: 6 },
   ],
-};
+} as const;
 
-export const ALGORITHM_27 = {
-  NODES: [
+const ALGORITHM_27 = {
+  nodes: [
     { id: 1, carrier: true },
     { id: 2, carrier: true },
     { id: 3, carrier: false },
@@ -45,7 +45,7 @@ export const ALGORITHM_27 = {
     { id: 5, carrier: false },
     { id: 6, carrier: false },
   ],
-  LINKS: [
+  links: [
     { source: 1, target: 2 },
     { source: 2, target: 3 },
     { source: 2, target: 4 },
@@ -53,4 +53,39 @@ export const ALGORITHM_27 = {
     { source: 4, target: 5 },
     { source: 4, target: 6 },
   ],
+} as const;
+
+export default {
+  1: ALGORITHM_1,
+  2: ALGORITHM_2,
+  3: ALGORITHM_1,
+  4: ALGORITHM_1,
+  5: ALGORITHM_1,
+  6: ALGORITHM_1,
+  7: ALGORITHM_1,
+  8: ALGORITHM_1,
+  9: ALGORITHM_1,
+  10: ALGORITHM_1,
+  11: ALGORITHM_1,
+  12: ALGORITHM_1,
+  13: ALGORITHM_1,
+  14: ALGORITHM_1,
+  15: ALGORITHM_1,
+  16: ALGORITHM_1,
+  17: ALGORITHM_1,
+  18: ALGORITHM_1,
+  19: ALGORITHM_1,
+  20: ALGORITHM_1,
+  21: ALGORITHM_1,
+  22: ALGORITHM_1,
+  23: ALGORITHM_1,
+  24: ALGORITHM_1,
+  25: ALGORITHM_1,
+  26: ALGORITHM_1,
+  27: ALGORITHM_27,
+  28: ALGORITHM_1,
+  29: ALGORITHM_1,
+  30: ALGORITHM_1,
+  31: ALGORITHM_1,
+  32: ALGORITHM_1,
 };

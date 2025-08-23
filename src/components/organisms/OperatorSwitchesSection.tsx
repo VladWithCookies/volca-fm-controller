@@ -1,13 +1,13 @@
-import useStore from '@/hooks/useStore';
 import { currentOperatorSelector } from '@/utils/selectors'
+import useStore from '@/hooks/useStore';
 import Section from '@/components/atoms/Section';
 import Switch from '@/components/molecules/Switch';
 import Stepper from '@/components/molecules/Stepper';
 
 export default function OperatorSwitchesSection() {
-  const algorithm = useStore((state) => state.algorithm);
+  const algorithmId = useStore((state) => state.algorithmId);
   const currentOperator = useStore(currentOperatorSelector);
-  const setAlgorithm = useStore((state) => state.setAlgorithm);
+  const setAlgorithmId = useStore((state) => state.setAlgorithmId);
   const setCurrentOperatorParam = useStore((state) => state.setCurrentOperatorParam);
 
   return (
@@ -32,8 +32,8 @@ export default function OperatorSwitchesSection() {
       <Stepper
         min={1}
         max={32}
-        value={algorithm}
-        onChange={setAlgorithm}
+        value={Number(algorithmId)}
+        onChange={(value) => setAlgorithmId(value.toString())}
       />
     </Section>
   );

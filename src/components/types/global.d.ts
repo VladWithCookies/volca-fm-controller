@@ -1,7 +1,17 @@
 declare global {
+  type Enumerate<
+    N extends number,
+    Acc extends number[] = []
+  > = Acc['length'] extends N ? Acc[number] : Enumerate<N, [...Acc, Acc['length']]>;
+
+  type Range<F extends number, T extends number> = Exclude<Enumerate<T>, Enumerate<F>> | T;
+
+  type Stringify<T> = `${T}`;
+
+  type AlgorithmId = Stringify<Range<1, 32>>;
   interface State {
     currentOperatorId: string;
-    algorithm: number;
+    algorithmId: AlgorithmId;
     operators: {
       [key: string]: {
         coarse: number;
@@ -21,7 +31,7 @@ declare global {
       },
     },
     setCurrentOperatorId: (currentOperatorId: string) => void;
-    setAlgorithm: (algorithm: number) => void;
+    setAlgorithmId: (algorithmId: AlgorithmId) => void;
     setOperatorParam: (id: string, key: string, value: number) => void;
     setCurrentOperatorParam: (key: string, value: unknown) => void;
   }

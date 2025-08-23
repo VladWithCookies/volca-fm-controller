@@ -8,7 +8,7 @@ interface Props {
   max?: number;
   value?: number;
   onChange?: (value: number) => void;
-};
+}
 
 export default function Stepper({
   min = 0,

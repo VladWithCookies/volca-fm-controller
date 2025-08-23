@@ -5,15 +5,20 @@ interface Props {
   min?: number;
   max?: number;
   value?: number;
-  onChange?: (value: number) => void,
-};
+  onChange?: (value: number) => void;
+  color?: 'teal' | 'fuchsia';
+}
 
 export default function Fader({
   min = 0,
   max = 99,
   value = 0,
-  onChange
+  onChange,
+  color = 'teal',
 }: Props) {
+  const teal = color === 'teal';
+  const fuchsia = color === 'fuchsia';
+
   const handleOnValueChange = ([value]: number[]) => {
     onChange?.(value);
   }
@@ -21,11 +26,11 @@ export default function Fader({
   return (
     <Slider.Root
       className="relative flex flex-col align-center size-full overflow-hidden"
-      value={[value]}
       min={min}
       max={max}
       step={1}
       orientation="vertical"
+      value={[value]}
       onValueChange={handleOnValueChange}
     >
 			<Slider.Track className={clsx(
@@ -35,7 +40,8 @@ export default function Fader({
 				<Slider.Range
           className={clsx(
             'absolute w-full',
-            'bg-teal-300',
+            { 'bg-teal-300': teal },
+            { 'bg-fuchsia-300': fuchsia },
           )}
         />
 			</Slider.Track>
