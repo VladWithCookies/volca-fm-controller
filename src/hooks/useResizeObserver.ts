@@ -19,8 +19,8 @@ const useResizeObserver = (): [React.RefObject<null>, number, number] => {
 
     return () => observer.disconnect();
   }, [ref]);
-  console.log(width, height)
-  return [ref, height, width];
+
+  return [ref, width, height];
 }
 
 export default useResizeObserver;

@@ -14,7 +14,11 @@ interface Node extends d3.SimulationNodeDatum {
 
 type Link = d3.SimulationLinkDatum<Node>;
 
-const AlgorithmSection = () => {
+interface Props {
+  className?: string;
+}
+
+const AlgorithmSection = ({ className }: Props) => {
   const svgRef = useRef(null);
   const [containerRef, width, height] = useResizeObserver();
   const links = ALGORITHM_1.LINKS.map((link) => ({ ...link }));
@@ -26,7 +30,7 @@ const AlgorithmSection = () => {
       .force('collide', d3.forceCollide().radius(100).strength(1))
       .force('link', d3.forceLink<Node, Link>(links).id(({ id }) => id).distance(150))
       .force('charge', d3.forceManyBody().strength(200))
-      .force('center', d3.forceCenter(height / 2, width / 2))
+      .force('center', d3.forceCenter(width / 2, height / 2))
       .stop();
 
     for (let i = 0; i < 100; i++) {
@@ -40,7 +44,7 @@ const AlgorithmSection = () => {
     <Section
       ref={containerRef}
       heading="Algorithm"
-      className="relative"
+      className={clsx('relative', className)}
     >
       <svg
         ref={svgRef}

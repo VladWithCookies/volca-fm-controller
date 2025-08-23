@@ -1,5 +1,5 @@
 import OperatorLevelsSection from '@/components/organisms/OperatorLevelsSection';
-import OperatorRatesSection from '@/components/organisms/OperatorRatesSection';
+import OperatorRatiosSection from '@/components/organisms/OperatorRatiosSection';
 import AlgorithmSection from '@/components/organisms/AlgorithmSection';
 import OperatorTunningSection from '@/components/organisms/OperatorTunningSection';
 import OperatorSwitchesSection from '@/components/organisms/OperatorSwitchesSection';
@@ -10,9 +10,9 @@ export default function OperatorsPage() {
   return (
     <OperatorsLayout
       heading="Operators"
-      top={<OperatorRatesSection />}
+      top={<OperatorRatiosSection />}
       bottom={<OperatorLevelsSection />}
-      asideTop={<AlgorithmSection />}
+      asideTop={<AlgorithmSection className="border-b" />}
       asideMiddle={<OperatorSwitchesSection />}
       asideBottom={<OperatorTunningSection />}
     />

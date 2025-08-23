@@ -1,29 +1,23 @@
 import Section from '@/components/atoms/Section';
 import OrderedList from '@/components/atoms/OrderedList';
 import ListItem from '@/components/atoms/ListItem';
-import Stepper from '@/components/molecules/Stepper';
+import Fader from '@/components/molecules/Fader';
 
-export default function OperatorRatesSection() {
+export default function EnvelopeRatesSection() {
   return (
-    <Section heading="Operator Rates">
+    <Section heading="Envelope Rates">
       <OrderedList>
         <ListItem>
-          <Stepper />
+          <Fader />
         </ListItem>
         <ListItem>
-          <Stepper />
+          <Fader />
         </ListItem>
         <ListItem>
-          <Stepper />
+          <Fader />
         </ListItem>
         <ListItem>
-          <Stepper />
-        </ListItem>
-        <ListItem>
-          <Stepper />
-        </ListItem>
-        <ListItem>
-          <Stepper />
+          <Fader />
         </ListItem>
       </OrderedList>
     </Section>

@@ -6,6 +6,8 @@ import TabsList from '@/components/atoms/TabsList';
 import TabsTrigger from '@/components/atoms/TabsTrigger';
 import TabsContent from '@/components/atoms/TabsContent';
 import OperatorsPage from '@/components/pages/OperatorsPage';
+import EnvelopesPage from '@/components/pages/EnvelopesPage';
+
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(
@@ -23,7 +25,7 @@ createRoot(document.getElementById('root')!).render(
         <OperatorsPage />
       </TabsContent>
       <TabsContent value="envelopes">
-        Coming soon.
+        <EnvelopesPage />
       </TabsContent>
 	  </TabsRoot>
   </StrictMode>,

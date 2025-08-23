@@ -6,7 +6,7 @@ export default function OperatorSwitchesSection() {
   return (
     <Section
       heading="Operator Switches"
-      className="flex flex-row justify-center items-center border-t"
+      className="flex flex-row justify-center items-center"
     >
       <Switch
         name="fixed"
