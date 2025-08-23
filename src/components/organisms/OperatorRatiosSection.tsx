@@ -1,30 +1,24 @@
+import useStore from '@/hooks/useStore';
 import Section from '@/components/atoms/Section';
 import OrderedList from '@/components/atoms/OrderedList';
 import ListItem from '@/components/atoms/ListItem';
-import Stepper from '@/components/molecules/Stepper';
+import Fader from '@/components/molecules/Fader';
 
 export default function OperatorRatiosSection() {
+  const operators = useStore((state) => state.operators);
+  const setOperatorParam = useStore((state) => state.setOperatorParam);
+
   return (
     <Section heading="Operator Ratios">
       <OrderedList>
-        <ListItem>
-          <Stepper />
-        </ListItem>
-        <ListItem>
-          <Stepper />
-        </ListItem>
-        <ListItem>
-          <Stepper />
-        </ListItem>
-        <ListItem>
-          <Stepper />
-        </ListItem>
-        <ListItem>
-          <Stepper />
-        </ListItem>
-        <ListItem>
-          <Stepper />
-        </ListItem>
+        {Object.entries(operators).map(([id, operator]) => (
+          <ListItem key={id}>
+            <Fader
+              value={operator.coarse}
+              onChange={(value) => setOperatorParam(id, 'coarse', value)}
+            />
+          </ListItem>
+        ))}
       </OrderedList>
     </Section>
   );

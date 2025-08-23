@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import * as d3 from 'd3';
 import { useRef, useMemo } from 'react';
 
+import useStore from '@/hooks/useStore';
 import { ALGORITHM_1 } from '@/constants/algorithms';
 import useResizeObserver from '@/hooks/useResizeObserver';
 import Section from '@/components/atoms/Section';
@@ -20,7 +21,12 @@ interface Props {
 
 const AlgorithmSection = ({ className }: Props) => {
   const svgRef = useRef(null);
+  const operators = useStore((state) => state.operators);
+  const currentOperatorId = useStore((state) => state.currentOperatorId)
+  const setCurrentOperatorId = useStore((state) => state.setCurrentOperatorId);
+
   const [containerRef, width, height] = useResizeObserver();
+
   const links = ALGORITHM_1.LINKS.map((link) => ({ ...link }));
 
   const nodes = useMemo<Node[]>(() => {
@@ -89,9 +95,11 @@ const AlgorithmSection = ({ className }: Props) => {
           key={id}
           style={{ left: x, top: y }}
           color={carrier ? 'fuchsia' : 'teal'}
+          onClick={() => setCurrentOperatorId(id.toString())}
           className={clsx(
             'absolute size-20 translate-[-50%]',
-            { 'border-4 border-dashed': id === 1 },
+            { 'opacity-50': !operators[id].active },
+            { 'border-4 border-dashed': id.toString() ===  currentOperatorId },
           )}
         >
           {id}
