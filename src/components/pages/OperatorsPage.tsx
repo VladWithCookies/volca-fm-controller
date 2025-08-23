@@ -13,8 +13,8 @@ export default function OperatorsPage() {
       top={<OperatorRatesSection />}
       bottom={<OperatorLevelsSection />}
       asideTop={<AlgorithmSection />}
-      asideMiddle={<OperatorTunningSection />}
-      asideBottom={<OperatorSwitchesSection />}
+      asideMiddle={<OperatorSwitchesSection />}
+      asideBottom={<OperatorTunningSection />}
     />
   );
 }

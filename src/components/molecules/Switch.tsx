@@ -8,7 +8,7 @@ interface Props {
 
 export default function Switch({ name, label }: Props) {
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row justify-center items-center size-full">
       <Toggle.Root
         id={name}
         className={clsx(

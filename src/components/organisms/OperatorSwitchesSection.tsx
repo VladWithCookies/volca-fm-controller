@@ -1,11 +1,12 @@
 import Section from '@/components/atoms/Section';
 import Switch from '@/components/molecules/Switch';
+import Stepper from '@/components/molecules/Stepper';
 
 export default function OperatorSwitchesSection() {
   return (
     <Section
       heading="Operator Switches"
-      className="flex flex-row justify-center items-center gap-20"
+      className="flex flex-row justify-center items-center border-t"
     >
       <Switch
         name="fixed"
@@ -15,6 +16,7 @@ export default function OperatorSwitchesSection() {
         name="active"
         label="Active"
       />
+      <Stepper />
     </Section>
   );
 }
