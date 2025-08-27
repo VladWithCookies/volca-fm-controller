@@ -4,11 +4,12 @@ declare global {
     Acc extends number[] = []
   > = Acc['length'] extends N ? Acc[number] : Enumerate<N, [...Acc, Acc['length']]>;
 
-  type Range<F extends number, T extends number> = Exclude<Enumerate<T>, Enumerate<F>> | T;
+  type NumberRange<F extends number, T extends number> = Exclude<Enumerate<T>, Enumerate<F>> | T;
 
   type Stringify<T> = `${T}`;
 
-  type AlgorithmId = Stringify<Range<1, 32>>;
+  type AlgorithmId = Stringify<NumberRange<1, 32>>;
+
   interface State {
     currentOperatorId: string;
     algorithmId: AlgorithmId;

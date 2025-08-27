@@ -1,4 +1,5 @@
 import { createIsOperatorCarrierSelector } from '@/utils/selectors';
+import useSysex from '@/hooks/useSysex';
 import useStore from '@/hooks/useStore';
 import Section from '@/components/atoms/Section';
 import OrderedList from '@/components/atoms/OrderedList';
@@ -14,11 +15,17 @@ function LevelFader({ value, operatorId }: Props) {
   const isOperatorCarrierSelector = createIsOperatorCarrierSelector(operatorId);
   const isOperatorCarrier = useStore(isOperatorCarrierSelector);
   const setOperatorParam = useStore((state) => state.setOperatorParam);
+  const sendSysex = useSysex();
+
+  const handleChange = (value: number) => {
+    setOperatorParam(operatorId, 'level', value);
+    sendSysex('level', value);
+  }
 
   return (
     <Fader
       value={value}
-      onChange={(value) => setOperatorParam(operatorId, 'level', value)}
+      onChange={handleChange}
       color={isOperatorCarrier ? 'fuchsia' : 'teal'}
     />
   );

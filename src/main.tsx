@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
+import { MIDIProvider } from '@/providers/MIDIProvider';
 import TabsRoot from '@/components/atoms/TabsRoot';
 import TabsList from '@/components/atoms/TabsList';
 import TabsTrigger from '@/components/atoms/TabsTrigger';
@@ -12,21 +13,23 @@ import './index.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <TabsRoot>
-      <TabsList>
-        <TabsTrigger value="operators">
-          Operators
-        </TabsTrigger>
-        <TabsTrigger value="envelopes">
-          Envelopes
-        </TabsTrigger>
-      </TabsList>
-      <TabsContent value="operators">
-        <OperatorsPage />
-      </TabsContent>
-      <TabsContent value="envelopes">
-        <EnvelopesPage />
-      </TabsContent>
-	  </TabsRoot>
+    <MIDIProvider>
+      <TabsRoot>
+        <TabsList>
+          <TabsTrigger value="operators">
+            Operators
+          </TabsTrigger>
+          <TabsTrigger value="envelopes">
+            Envelopes
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="operators">
+          <OperatorsPage />
+        </TabsContent>
+        <TabsContent value="envelopes">
+          <EnvelopesPage />
+        </TabsContent>
+      </TabsRoot>
+    </MIDIProvider>
   </StrictMode>,
 );
