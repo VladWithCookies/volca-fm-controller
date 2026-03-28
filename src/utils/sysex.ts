@@ -1,146 +1,56 @@
-export const createDX7Sysex = (patch) => {
-  const sysex = [
-    240,
-    67,
-    0,
-    0,
-    1,
-    27,
-    80,
-    0,
-    0,
-    80,
-    99,
-    0,
-    0,
-    0,
-    50,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    patch.operators[6].level,
-    0,
-    patch.operators[6].coarse,
-    patch.operators[6].fine,
-    patch.operators[6].tune,
-    80,
-    0,
-    0,
-    80,
-    99,
-    0,
-    0,
-    0,
-    50,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    patch.operators[5].level,
-    0,
-    patch.operators[5].coarse,
-    patch.operators[5].fine,
-    patch.operators[5].tune,
-    80,
-    0,
-    0,
-    80,
-    99,
-    0,
-    0,
-    0,
-    50,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    patch.operators[4].level,
-    0,
-    patch.operators[4].coarse,
-    patch.operators[4].fine,
-    patch.operators[4].tune,
-    80,
-    0,
-    0,
-    79,
-    99,
-    0,
-    0,
-    0,
-    50,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    patch.operators[3].level,
-    0,
-    patch.operators[3].coarse,
-    patch.operators[3].fine,
-    patch.operators[3].tune,
-    80,
-    0,
-    0,
-    80,
-    99,
-    0,
-    0,
-    0,
-    50,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    patch.operators[2].level,
-    0,
-    patch.operators[2].coarse,
-    patch.operators[2].fine,
-    patch.operators[2].tune,
-    80,
-    0,
-    0,
-    80,
-    99,
-    0,
-    0,
-    0,
-    50,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    patch.operators[1].level,
-    0,
-    patch.operators[1].coarse,
-    patch.operators[1].fine,
-    patch.operators[1].tune,
-    50,
-    50,
-    50,
-    50,
-    50,
-    50,
-    50,
-    50,
-    Number(patch.algorithmId),
+interface Params {
+  operators: State['operators'];
+  algorithmId: AlgorithmId;
+}
+
+export const createDX7Sysex = ({ operators, algorithmId }: Params) => {
+  const header = [
+    240, // SysEx start (0xF0)
+    67,  // Yamaha manufacturer ID
+    0,   // Device number (MIDI channel 1)
+    0,   // Format number (DX7 voice data)
+    1,   // Sub-status (voice data)
+    27,  // Byte count / format indicator
+  ]
+
+  const operatorParams = Object
+    .values(operators)
+    .reverse() // DX7 accepts operator params backwards
+    .reduce<number[]>((result, operator) => [
+      ...result,
+      operator.attackRate,
+      operator.decayRate,
+      operator.sustainRate,
+      operator.releaseRate,
+      operator.attackLevel,
+      operator.decayLevel,
+      operator.sustainLevel,
+      operator.releaseLevel,
+      50,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      operator.level,
+      0,
+      operator.coarse,
+      operator.fine,
+      operator.tune,
+    ], [])
+
+  const globalParams = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    Number(algorithmId) - 1, // DX7 indexes algorithms starting from 0
     0,
     0,
     0,
@@ -151,21 +61,27 @@ export const createDX7Sysex = (patch) => {
     0,
     0,
     24,
-    115,
-    121,
-    110,
-    116,
-    104,
-    109,
-    97,
-    116,
-    97,
-    32,
-    123,
-    247
+  ];
+
+  const footer = [
+    78,  // N
+    101, // e
+    119, // w
+    63,  // space
+    80,  // P
+    97,  // a
+    116, // t
+    99,  // c
+    104, // h
+    63,  // space
+    19,
+    247, // SysEx end (0xF7)
+  ];
+
+  return [
+    ...header,
+    ...operatorParams,
+    ...globalParams,
+    ...footer,
   ]
-
-  console.log(patch)
-
-  return sysex;
 }

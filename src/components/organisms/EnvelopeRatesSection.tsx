@@ -24,7 +24,7 @@ export default function EnvelopeRatesSection() {
             onChange={(value) => setCurrentOperatorParam('decayRate', value)}
           />
         </ListItem>
-                <ListItem>
+        <ListItem>
           <Fader
             value={currentOperator.sustainRate}
             onChange={(value) => setCurrentOperatorParam('sustainRate', value)}
