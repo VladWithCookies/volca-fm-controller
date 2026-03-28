@@ -19,7 +19,7 @@ function LevelFader({ value, operatorId }: Props) {
 
   const handleChange = (value: number) => {
     setOperatorParam(operatorId, 'level', value);
-    sendSysex('level', value);
+    sendSysex();
   }
 
   return (

@@ -19,7 +19,7 @@ function RatioFader({ value, operatorId }: Props) {
 
   const handleChange = (value: number) => {
     setOperatorParam(operatorId, 'coarse', value);
-    sendSysex('coarse', value);
+    sendSysex();
   }
 
   return (

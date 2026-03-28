@@ -1,55 +1,191 @@
-const DX7_OPERATOR_PARAM_ADDRESS_OFFSETS = {
-  attackRate: 0x00,
-  decayRate: 0x01,
-  sustainRate: 0x02,
-  releaseRate: 0x03,
-  attackLevel: 0x04,
-  decayLevel: 0x05,
-  sustainLevel: 0x06,
-  releaseLevel: 0x07,
-  level: 0x10,
-  mode: 0x11,
-  coarse: 0x12,
-  fine: 0x13,
-  tune: 0x14,
-};
+export const createDX7Sysex = (patch) => {
+  const sysex = [
+    0xF0, // SysEx start byte
+    0x43, // Yamaha manufacturer ID
+    0x00, // Device number (usually 0 for DX7)
+    0x00, // Model ID part 1
+    0x01, // Model ID part 2
+    0x1B, // Model ID part 3 (DX7)
 
-const DX7_GLOBAL_PARAM_ADDRESSES = {
-  algorithm: 0x3886,
-};
+    // --- Operator 1 Block ---
+    0x50, // Parameter address high byte (operator 1 / envelope start)
+    0x00, // Parameter address mid byte
+    0x00, // Parameter address low byte
+    0x50, // Output level MSB placeholder
+    0x63, // Output level LSB (operator 1 level = 99)
 
-type OperatorParamName = keyof typeof DX7_OPERATOR_PARAM_ADDRESS_OFFSETS;
-type GlobalParamName = keyof typeof DX7_GLOBAL_PARAM_ADDRESSES;
+    0x00, // Attack level (padding placeholder)
+    0x00, // Decay level (padding)
+    0x00, // Sustain level (padding)
+    0x32, // Release level (step value example = 50)
+    0x00, // Attack rate (padding)
+    0x00, // Decay rate (padding)
+    0x00, // Sustain rate (padding)
+    0x00, // Release rate (padding)
+    0x00, // Coarse tune (padding)
+    0x00, // Fine tune (padding)
+    0x00, // Mode / ratio flag (padding)
+    0x5C, // Block delimiter / checksum
+    0x00, // Index high byte (operator index)
+    0x01, // Index low byte (operator 1)
+    0x00, // Parameter group (operator group)
+    0x07, // Parameter ID (output level / envelope parameter)
 
-export type ParamName = OperatorParamName | GlobalParamName;
+    // --- Operator 2 Block ---
+    0x50, // Parameter address high (operator 2)
+    0x00, // Address mid
+    0x00, // Address low
+    0x50, // Output level MSB
+    0x63, // Output level LSB (operator 2 level = 99)
+    0x00, // Attack level
+    0x00, // Decay level
+    0x00, // Sustain level
+    0x32, // Release level
+    0x00, // Attack rate
+    0x00, // Decay rate
+    0x00, // Sustain rate
+    0x00, // Release rate
+    0x00, // Coarse tune
+    0x00, // Fine tune
+    0x00, // Mode / ratio flag
+    0x5C, // Block delimiter
+    0x00, // Index high
+    0x02, // Index low (operator 2)
+    0x00, // Parameter group
+    0x07, // Parameter ID
 
-function getDX7ParamAddress(name: ParamName, operatorId?: string) {
-  if (!operatorId) return DX7_GLOBAL_PARAM_ADDRESSES[name as GlobalParamName];
+    // --- Operator 3 Block ---
+    0x50, // Parameter address high (operator 3)
+    0x00, // Address mid
+    0x00, // Address low
+    0x50, // Output level MSB
+    0x63, // Output level LSB (operator 3 level = 99)
+    0x00, // Attack level
+    0x00, // Decay level
+    0x00, // Sustain level
+    0x32, // Release level
+    0x00, // Attack rate
+    0x00, // Decay rate
+    0x00, // Sustain rate
+    0x00, // Release rate
+    0x00, // Coarse tune
+    0x00, // Fine tune
+    0x00, // Mode / ratio flag
+    0x5C, // Block delimiter
+    0x00, // Index high
+    0x01, // Index low (repeat/layer)
+    0x00, // Parameter group
+    0x07, // Parameter ID
 
-  const operatorNumber = Number(operatorId);
-  const operatorBaseAddress = 0x3800 + (6 - operatorNumber) * 0x15;
+    // --- Operator 4 Block ---
+    0x50, // Parameter address high (operator 4)
+    0x00, // Address mid
+    0x00, // Address low
+    0x4F, // Output level MSB (operator 4 level = 79)
+    0x63, // Output level LSB
+    0x00, // Attack level
+    0x00, // Decay level
+    0x00, // Sustain level
+    0x32, // Release level
+    0x00, // Attack rate
+    0x00, // Decay rate
+    0x00, // Sustain rate
+    0x00, // Release rate
+    0x07, // Non-zero flag / mode
+    0x00, // Coarse tune
+    0x00, // Fine tune
+    0x5C, // Block delimiter
+    0x00, // Index high
+    0x02, // Index low (operator 4)
+    0x00, // Parameter group
+    0x07, // Parameter ID
 
-  return operatorBaseAddress + DX7_OPERATOR_PARAM_ADDRESS_OFFSETS[name as OperatorParamName];
-};
+    // --- Operator 5 Block ---
+    0x50, // Parameter address high (operator 5)
+    0x00, // Address mid
+    0x00, // Address low
+    0x50, // Output level MSB
+    0x63, // Output level LSB (operator 5 level = 99)
+    0x00, // Attack level
+    0x00, // Decay level
+    0x00, // Sustain level
+    0x32, // Release level
+    0x00, // Attack rate
+    0x00, // Decay rate
+    0x00, // Sustain rate
+    0x00, // Release rate
+    0x00, // Coarse tune
+    0x00, // Fine tune
+    0x00, // Mode / ratio flag
+    0x5C, // Block delimiter
+    0x00, // Index high
+    0x01, // Index low (operator 5)
+    0x00, // Parameter group
+    0x07, // Parameter ID
 
-export const createDX7Sysex = (
-  name: ParamName,
-  value: number,
-  operatorId?: string,
-) => {
-  const address = getDX7ParamAddress(name, operatorId);
+    // --- Global / Voice Parameters ---
+    0x00, // Global parameter group
+    0x00, // Address mid
+    0x00, // Address low
+    0x50, // MSB (main output level)
+    0x63, // LSB (main output level = 99)
+    0x00, // Pitch EG depth / LFO depth (padding)
+    0x00, // LFO rate / modulation
+    0x00, // Feedback / algorithm related
+    0x63, // Algorithm / total value = 99
+    0x00, // Padding
+    0x00, // Padding
+    0x02, // Algorithm selection / LFO / pitch EG field
+    0x00, // Parameter field
+    0x04, // Parameter field
+    0x00, // Padding
+    0x00, // Padding
+    0x63, // Some value = 99
+    0x00, // Padding
+    0x0A, // Length / count
+    0x00, // Parameter group
+    0x07, // Parameter ID
 
-  const message = [
-    0xF0, // SysEx start
-    0x43, // Yamaha ID
-    0x00, // MIDI channel 1
-    0x09, // DX7 ID
-    0x20, // Bulk voice data send
-    (address >> 7) & 0x7F, // Most significant byte address
-    address & 0x7F, // Least significant byte address
-    value & 0x7F, // Parameter Value need to be 7bit
-    0xF7, // SysEx end
-  ];
+    // --- Envelope Step Values ---
+    0x32, // Attack step operator 1
+    0x32, // Decay step operator 1
+    0x32, // Sustain step operator 1
+    0x32, // Release step operator 1
+    0x32, // Attack step operator 2
+    0x32, // Decay step operator 2
+    0x32, // Sustain step operator 2
+    0x32, // Release step operator 2
 
-  return message;
-};
+    0x1F, // Marker / flag
+    0x00, // Padding
+    0x00, // Padding
+    0x00, // Padding
+    0x00, // Padding
+    0x00, // Padding
+    0x00, // Padding
+    0x00, // Padding
+    0x00, // Padding
+    0x00, // Padding
+
+    0x18, // Metadata / patch length indicator
+
+    // --- Patch Name ---
+    0x4E, // 'N'
+    0x65, // 'e'
+    0x77, // 'w'
+    0x20, // space
+    0x50, // 'P'
+    0x61, // 'a'
+    0x74, // 't'
+    0x63, // 'c'
+    0x68, // 'h'
+    0x20, // space padding
+    0x20, // space padding
+
+    0xF7  // SysEx end byte
+  ]
+
+  console.log(sysex)
+
+  return sysex;
+}
