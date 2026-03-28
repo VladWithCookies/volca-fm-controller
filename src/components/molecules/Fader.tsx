@@ -47,7 +47,7 @@ export default function Fader({
 			</Slider.Track>
 			<Slider.Thumb
         className={clsx(
-          'block w-100 h-15',
+          'block w-200 h-15',
           'outline-none bg-gray-700',
           'hover:bg-gray-800 focus:bg-gray-800',
         )}

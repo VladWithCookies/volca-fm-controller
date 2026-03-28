@@ -30,10 +30,8 @@ export default function OperatorSwitchesSection() {
         onChange={(value) => setCurrentOperatorParam('active', value)}
       />
       <Stepper
-        min={1}
-        max={32}
         value={Number(algorithmId)}
-        onChange={(value) => setAlgorithmId(value.toString())}
+        onChange={(value) => setAlgorithmId(value.toString() as AlgorithmId)}
       />
     </Section>
   );

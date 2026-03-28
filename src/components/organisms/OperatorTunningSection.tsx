@@ -13,8 +13,7 @@ export default function OperatorTunningSection() {
       className="flex"
     >
       <Fader
-        min={-7}
-        max={7}
+        max={14}
         value={currentOperator.tune}
         onChange={(value) => setCurrentOperatorParam('tune', value)}
       />

@@ -11,21 +11,17 @@ interface Props {
 }
 
 export default function Stepper({
-  min = 0,
+  min = 1,
   max = 32,
-  value = 0,
+  value = 1,
   onChange,
 }: Props) {
   const handleIncrement = () => {
-    if (value !== max) {
-      onChange?.(value + 1);
-    }
+    onChange?.(value + 1);
   }
 
   const handleDecrement = () => {
-    if (value !== min) {
-      onChange?.(value - 1);
-    }
+    onChange?.(value - 1);
   }
 
   return (
