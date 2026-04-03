@@ -1,3 +1,4 @@
+import { memo, useCallback } from 'react';
 import clsx from 'clsx';
 import { Slider } from 'radix-ui';
 
@@ -9,7 +10,7 @@ interface Props {
   color?: 'teal' | 'fuchsia';
 }
 
-export default function Fader({
+function Fader({
   min = 0,
   max = 99,
   value = 0,
@@ -19,9 +20,9 @@ export default function Fader({
   const teal = color === 'teal';
   const fuchsia = color === 'fuchsia';
 
-  const handleOnValueChange = ([value]: number[]) => {
+  const handleOnValueChange = useCallback(([value]: number[]) => {
     onChange?.(value);
-  }
+  }, [onChange]);
 
   return (
     <Slider.Root
@@ -55,3 +56,5 @@ export default function Fader({
 		</Slider.Root>
   );
 }
+
+export default memo(Fader)
