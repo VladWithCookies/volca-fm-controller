@@ -44,7 +44,7 @@ const AlgorithmSection = ({ className }: Props) => {
     }
 
     return nodes;
-  }, [width, height]);
+  }, [width, height, algorithm]);
 
   return (
     <Section
