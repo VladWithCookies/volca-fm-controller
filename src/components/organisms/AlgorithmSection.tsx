@@ -32,6 +32,7 @@ const AlgorithmSection = ({ className }: Props) => {
 
   useEffect(() => {
     const simulation = d3.forceSimulation<Node>(nodes)
+      .alphaDecay(0.1)
       .force('link', d3.forceLink<Node, Link>(links).id(({ id }) => id).distance(200))
       .force('center', d3.forceCenter(width / 2, height / 2).strength(0.5))
       .force('charge', d3.forceManyBody().strength(200))
@@ -44,7 +45,7 @@ const AlgorithmSection = ({ className }: Props) => {
     return () => {
       simulation.stop();
     };
-  }, [width, height, nodes, links]);
+  }, [width, height, algorithm]);
 
   return (
     <Section
