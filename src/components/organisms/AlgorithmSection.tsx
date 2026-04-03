@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as d3 from 'd3';
-import { useRef, useMemo } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 import { algorithmSelector } from '@/utils/selectors';
 import useStore from '@/hooks/useStore';
@@ -26,25 +26,25 @@ const AlgorithmSection = ({ className }: Props) => {
   const currentOperatorId = useStore((state) => state.currentOperatorId)
   const setCurrentOperatorId = useStore((state) => state.setCurrentOperatorId);
   const [containerRef, width, height] = useResizeObserver();
+  const [nodes, setNodes] = useState<Node[]>(algorithm.nodes.map((node) => ({ ...node })));
 
   const links = algorithm.links.map((link) => ({ ...link }));
 
-  const nodes = useMemo<Node[]>(() => {
-    const nodes = algorithm.nodes.map((node) => ({ ...node }));
-
+  useEffect(() => {
     const simulation = d3.forceSimulation<Node>(nodes)
-      .force('collide', d3.forceCollide().radius(100).strength(1))
-      .force('link', d3.forceLink<Node, Link>(links).id(({ id }) => id).distance(150))
+      .force('link', d3.forceLink<Node, Link>(links).id(({ id }) => id).distance(200))
+      .force('center', d3.forceCenter(width / 2, height / 2).strength(0.5))
       .force('charge', d3.forceManyBody().strength(200))
-      .force('center', d3.forceCenter(width / 2, height / 2))
-      .stop();
+      .force('collision', d3.forceCollide().radius(100).strength(1));
 
-    for (let i = 0; i < 100; i++) {
-      simulation.tick();
-    }
+    simulation.on('tick', () => {
+      setNodes([...simulation.nodes()]);
+    });
 
-    return nodes;
-  }, [width, height, algorithm]);
+    return () => {
+      simulation.stop();
+    };
+  }, [width, height, nodes, links]);
 
   return (
     <Section
