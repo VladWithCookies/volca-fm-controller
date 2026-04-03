@@ -78,10 +78,14 @@ export const createDX7Sysex = ({ operators, algorithmId }: Params) => {
     247, // SysEx end (0xF7)
   ];
 
-  return [
+  const sysex = [
     ...header,
     ...operatorParams,
     ...globalParams,
     ...footer,
-  ]
+  ];
+
+  console.log(sysex);
+
+  return sysex;
 }

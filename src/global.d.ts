@@ -10,6 +10,8 @@ declare global {
 
   type AlgorithmId = Stringify<NumberRange<1, 32>>;
 
+  type Callback = (...args: never[]) => void;
+
   interface State {
     currentOperatorId: string;
     algorithmId: AlgorithmId;
