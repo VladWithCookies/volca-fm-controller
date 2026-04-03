@@ -3,6 +3,11 @@ interface Params {
   algorithmId: AlgorithmId;
 }
 
+const OPERATOR_MODES = {
+  ratio: 0,
+  fixed: 1,
+}
+
 export const createDX7Sysex = ({ operators, algorithmId }: Params) => {
   const header = [
     240, // SysEx start (0xF0)
@@ -34,8 +39,8 @@ export const createDX7Sysex = ({ operators, algorithmId }: Params) => {
       0,
       0,
       0,
-      operator.level,
-      0,
+      operator.active ? operator.level : 0,
+      OPERATOR_MODES[operator.mode],
       operator.coarse,
       operator.fine,
       operator.tune,

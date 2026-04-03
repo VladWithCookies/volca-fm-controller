@@ -19,7 +19,7 @@ export default function OperatorSwitchesSection() {
         name="fixed"
         label="Fixed"
         value={currentOperator.mode}
-        options={['ration', 'fixed']}
+        options={['ratio', 'fixed']}
         onChange={(value) => setCurrentOperatorParam('mode', value)}
       />
       <Switch
