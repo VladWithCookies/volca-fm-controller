@@ -33,10 +33,10 @@ const AlgorithmSection = ({ className }: Props) => {
   useEffect(() => {
     const simulation = d3.forceSimulation<Node>(nodes)
       .alphaDecay(0.1)
-      .force('link', d3.forceLink<Node, Link>(links).id(({ id }) => id).distance(200))
+      .force('link', d3.forceLink<Node, Link>(links).id(({ id }) => id).distance(100))
       .force('center', d3.forceCenter(width / 2, height / 2).strength(0.5))
       .force('charge', d3.forceManyBody().strength(200))
-      .force('collision', d3.forceCollide().radius(100).strength(1));
+      .force('collision', d3.forceCollide().radius(60).strength(1));
 
     simulation.on('tick', () => {
       setNodes([...simulation.nodes()]);
@@ -71,8 +71,8 @@ const AlgorithmSection = ({ className }: Props) => {
                 key={index}
                 x={source.x}
                 y={source.y}
-                width={70}
-                height={70}
+                width={60}
+                height={60}
                 fill="none"
                 stroke="black"
               />
@@ -98,7 +98,7 @@ const AlgorithmSection = ({ className }: Props) => {
           color={carrier ? 'fuchsia' : 'teal'}
           onClick={() => setCurrentOperatorId(id.toString())}
           className={clsx(
-            'absolute size-20 translate-[-50%]',
+            'absolute size-16 translate-[-50%]',
             { 'opacity-50': !operators[id].active },
             { 'border-4 border-dashed': id.toString() ===  currentOperatorId },
           )}

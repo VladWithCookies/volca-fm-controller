@@ -30,7 +30,7 @@ export default function Switch({
         onPressedChange={handlePressedChange}
         className={clsx(
           'toggle-root',
-          'size-20',
+          'size-16',
           'bg-gray-200',
           'hover:bg-gray-300 focus:bg-gray-300 transition'
         )}
