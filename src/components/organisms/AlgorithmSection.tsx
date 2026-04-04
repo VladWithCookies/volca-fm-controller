@@ -91,11 +91,11 @@ const AlgorithmSection = ({ className }: Props) => {
           );
         })}
       </svg>
-      {nodes.map(({ id, x, y, carrier }) => (
+      {nodes.map(({ id, x, y }) => (
         <Button
           key={id}
           style={{ left: x, top: y }}
-          color={carrier ? 'fuchsia' : 'teal'}
+          color={algorithm.nodes.find((node) => node.id === id)?.carrier ? 'fuchsia' : 'teal'}
           onClick={() => setCurrentOperatorId(id.toString())}
           className={clsx(
             'absolute size-16 translate-[-50%]',
