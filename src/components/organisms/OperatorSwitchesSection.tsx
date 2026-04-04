@@ -13,7 +13,7 @@ export default function OperatorSwitchesSection() {
   return (
     <Section
       heading="Operator Switches"
-      className="flex flex-row justify-center items-center"
+      className="flex flex-row justify-center items-center relative bg-white "
     >
       <Switch
         name="fixed"
